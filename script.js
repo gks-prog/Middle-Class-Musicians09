@@ -1,7 +1,7 @@
 // Initialize Icons
 lucide.createIcons();
 
-// Lenis Smooth Scroll Setup
+// Lenis Smooth Scroll Setup (Premium butter-smooth scrolling)
 const lenis = new Lenis({
     duration: 1.2,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -14,7 +14,7 @@ function raf(time) {
 }
 requestAnimationFrame(raf);
 
-// Custom Cursor Logic (Only active if device supports hover)
+// Custom Cursor Logic (Disabled cleanly on touch devices)
 const cursorDot = document.querySelector('.cursor-dot');
 const cursorOutline = document.querySelector('.cursor-outline');
 const hoverElements = document.querySelectorAll('.sfx-hover, a, button, .portfolio-item');
@@ -35,27 +35,27 @@ if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
 
     hoverElements.forEach(el => {
         el.addEventListener('mouseenter', () => {
-            cursorOutline.style.width = '60px';
-            cursorOutline.style.height = '60px';
-            cursorOutline.style.backgroundColor = 'rgba(212, 175, 55, 0.05)';
-            cursorOutline.style.borderColor = 'rgba(212, 175, 55, 0.5)';
+            cursorOutline.style.width = '50px';
+            cursorOutline.style.height = '50px';
+            cursorOutline.style.backgroundColor = 'rgba(212, 175, 55, 0.08)';
+            cursorOutline.style.borderColor = 'rgba(212, 175, 55, 0.6)';
         });
         el.addEventListener('mouseleave', () => {
-            cursorOutline.style.width = '36px';
-            cursorOutline.style.height = '36px';
+            cursorOutline.style.width = '32px';
+            cursorOutline.style.height = '32px';
             cursorOutline.style.backgroundColor = 'transparent';
             cursorOutline.style.borderColor = 'var(--text-secondary)';
         });
     });
 }
 
-// Preloader & Hero Animation Timeline
+// Cinematic Preloader & Hero Entry Timeline
 window.addEventListener('load', () => {
     const tl = gsap.timeline();
     
-    tl.to(".preloader-title", { opacity: 1, duration: 0.8, ease: "power2.out" })
-      .to(".preloader-bar", { width: "100%", duration: 1.2, ease: "power2.inOut" }, "-=0.2")
-      .to("#preloader", { yPercent: -100, duration: 0.8, ease: "power2.inOut", delay: 0.2 })
+    tl.to(".preloader-title", { opacity: 1, letterSpacing: "0.4em", duration: 1.2, ease: "power2.out" })
+      .to(".preloader-bar", { width: "100%", duration: 1.5, ease: "power2.inOut" }, "-=0.8")
+      .to("#preloader", { yPercent: -100, duration: 0.8, ease: "power2.inOut", delay: 0.3 })
       .from(".gsap-nav", { y: -50, opacity: 0, duration: 0.8, ease: "power3.out" }, "-=0.4")
       .from(".hero-title .line", { y: "110%", duration: 0.8, stagger: 0.15, ease: "power4.out" }, "-=0.6")
       .from(".gsap-fade-delay", { opacity: 0, y: 20, duration: 0.8, stagger: 0.15, ease: "power2.out" }, "-=0.4")
@@ -81,27 +81,37 @@ if(slides.length > 0) {
     }, 4500);
 }
 
-// Interactive Magic Hub Node Logic
+// ----------------------------------------------------
+// ANTI-OVERLAP ELLIPTICAL NODE BURST
+// ----------------------------------------------------
 const magicBtn = document.getElementById('magic-btn');
 const subNodes = document.querySelectorAll('.sub-node');
 let nodesExpanded = false;
 
 magicBtn.addEventListener('click', () => {
+    // Dynamic radii based on screen width to guarantee no collision
+    const radiusX = window.innerWidth < 768 ? 140 : 280;
+    const radiusY = window.innerWidth < 768 ? 120 : 200;
+    
     if (!nodesExpanded) {
-        // Expand
-        magicBtn.innerText = "One Stop Solution for artists";
-        // Calculate dynamic radius based on screen size
-        const radius = window.innerWidth < 768 ? 120 : 180;
-        
+        // Change text cleanly
+        gsap.to(magicBtn, { opacity: 0, duration: 0.2, onComplete: () => {
+            magicBtn.innerText = "One Stop Solution for artists";
+            gsap.to(magicBtn, { opacity: 1, duration: 0.2 });
+        }});
+
+        // Elliptical Math: Spreads nodes cleanly without clipping button or text below
         gsap.to(subNodes, {
             opacity: 1, scale: 1,
-            x: (i) => Math.cos(i * (Math.PI * 2) / subNodes.length) * radius,
-            y: (i) => Math.sin(i * (Math.PI * 2) / subNodes.length) * radius,
-            duration: 0.8, stagger: 0.05, ease: "back.out(1.5)"
+            x: (i) => Math.cos((i * (Math.PI * 2) / subNodes.length) - Math.PI/2) * radiusX,
+            y: (i) => Math.sin((i * (Math.PI * 2) / subNodes.length) - Math.PI/2) * radiusY,
+            duration: 0.9, stagger: 0.05, ease: "back.out(1.2)"
         });
     } else {
-        // Collapse
-        magicBtn.innerText = "don't touch it";
+        gsap.to(magicBtn, { opacity: 0, duration: 0.2, onComplete: () => {
+            magicBtn.innerText = "don't touch it";
+            gsap.to(magicBtn, { opacity: 1, duration: 0.2 });
+        }});
         gsap.to(subNodes, { x: 0, y: 0, opacity: 0, scale: 0.5, duration: 0.5, ease: "power2.in" });
     }
     nodesExpanded = !nodesExpanded;
@@ -116,7 +126,7 @@ themeBtn.addEventListener('click', () => {
 });
 
 // ----------------------------------------------------
-// NATIVE AUDIO INTEGRATION (Floating Pill Player)
+// FROSTED GLASS MINI PLAYER LOGIC
 // ----------------------------------------------------
 const tracks = document.querySelectorAll('.track-trigger');
 const fPlayer = document.getElementById('floating-player');
@@ -129,7 +139,6 @@ const fpCloseBtn = document.getElementById('fp-close-btn');
 const playIcon = fpPlayBtn.querySelector('.icon-play');
 const pauseIcon = fpPlayBtn.querySelector('.icon-pause');
 
-// Helper to switch Play/Pause UI
 function updatePlayerUI(isPlaying) {
     if (isPlaying) {
         fPlayer.classList.remove('paused');
@@ -144,17 +153,15 @@ function updatePlayerUI(isPlaying) {
 
 tracks.forEach(track => {
     track.addEventListener('click', (e) => {
-        e.preventDefault(); // Prevent default if wrapped in anchor tags later
+        e.preventDefault(); 
         
         const src = track.getAttribute('data-src');
         const title = track.getAttribute('data-title');
         const cover = track.getAttribute('data-cover');
         
-        // Update UI
         fpTitle.innerText = title;
         fpCover.src = cover;
         
-        // Load and Play Audio
         if (audioEl.src !== src) {
             audioEl.src = src;
         }
@@ -163,13 +170,11 @@ tracks.forEach(track => {
             fPlayer.classList.add('active');
             updatePlayerUI(true);
         }).catch(err => {
-            console.error("Audio playback failed (Check Drive Link Format):", err);
-            alert("Unable to play track. Ensure link is formatted as a direct download link.");
+            console.error("Playback failed (Ensure Google Drive link formats are direct downloads):", err);
         });
     });
 });
 
-// Toggle Play/Pause from Floating Player
 fpPlayBtn.addEventListener('click', () => {
     if (audioEl.paused) {
         audioEl.play();
@@ -180,14 +185,12 @@ fpPlayBtn.addEventListener('click', () => {
     }
 });
 
-// Close Player
 fpCloseBtn.addEventListener('click', () => {
     audioEl.pause();
     updatePlayerUI(false);
     fPlayer.classList.remove('active');
 });
 
-// Handle Audio End natively
 audioEl.addEventListener('ended', () => {
     updatePlayerUI(false);
 });
