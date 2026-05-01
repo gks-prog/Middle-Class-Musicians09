@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Middle Class Musicians | Premium Studio</title>
-    <link rel="stylesheet" href="style.css">
     
-    <!-- Fonts -->
+    <!-- Fonts: Upgraded to a more editorial pairing -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     
     <!-- Smooth Scroll & GSAP -->
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
@@ -24,29 +24,23 @@
     <!-- CINEMATIC PRELOADER -->
     <div id="preloader">
         <div class="preloader-content">
-            <h1 class="preloader-title">MIDDLE CLASS MUSICIANS</h1>
+            <h1 class="preloader-title">MCM</h1>
             <div class="preloader-bar-container">
                 <div class="preloader-bar"></div>
             </div>
         </div>
     </div>
 
-    <!-- Custom Cursor -->
+    <!-- GPU-Optimized Custom Cursor (Hidden on Touch) -->
     <div class="cursor-dot"></div>
     <div class="cursor-outline"></div>
 
-    <!-- Background Elements (Hardware Accelerated) -->
+    <!-- Background Elements -->
     <div class="noise-overlay"></div>
-
-    <!-- Theme Toggle -->
-    <button class="theme-toggle ultra-glass sfx-hover" id="theme-btn" aria-label="Toggle Theme">
-        <i data-lucide="sun" class="sun-icon"></i>
-        <i data-lucide="moon" class="moon-icon"></i>
-    </button>
 
     <nav class="navbar ultra-glass gsap-nav">
         <div class="logo sfx-hover">
-            <i data-lucide="music-4" style="margin-right: 8px;"></i>
+            <i data-lucide="disc-3" class="logo-icon"></i>
             MCM
         </div>
         <div class="nav-links">
@@ -54,45 +48,48 @@
             <a href="#interactive-hub" class="sfx-hover">Solutions</a>
             <a href="#portfolio" class="sfx-hover">Work</a>
         </div>
-        <a href="https://wa.me/919315778147" class="btn-nav sfx-hover" target="_blank" rel="noopener noreferrer">Book Session</a>
+        <div class="nav-actions">
+            <button class="theme-toggle sfx-hover" id="theme-btn" aria-label="Toggle Theme">
+                <i data-lucide="sun" class="sun-icon"></i>
+                <i data-lucide="moon" class="moon-icon"></i>
+            </button>
+            <a href="https://wa.me/919315778147" class="btn-nav sfx-hover" target="_blank" rel="noopener noreferrer">Book Session</a>
+        </div>
     </nav>
 
     <main>
         <section class="hero" id="hero">
             <div class="hero-left">
-                <!-- Logo Moved to Left Side -->
-                <div class="studio-logo-wrapper ultra-glass gsap-fade-delay">
-                    <!-- Replace the src below with your Google Drive direct image link -->
-                    <img src="https://placehold.co/150x150/d4af37/ffffff?text=MCM+Logo" alt="MCM Studio Logo" class="studio-logo" id="main-logo">
-                </div>
-
                 <div class="hero-text-wrapper">
                     <h1 class="hero-title">
                         <div class="line-wrap"><span class="line">RECORD.</span></div>
                         <div class="line-wrap"><span class="line">CREATE.</span></div>
-                        <div class="line-wrap"><span class="line text-vibrant" style="color: var(--accent);">PERFORM.</span></div>
+                        <div class="line-wrap"><span class="line text-premium">PERFORM.</span></div>
                     </h1>
-                    <p class="hero-subtitle gsap-fade-delay">Delhi's premier cinematic recording space. Elevating independent sound to global standards.</p>
+                    <p class="hero-subtitle gsap-fade-delay">Delhi's premier cinematic recording space. Elevating independent sound to global editorial standards.</p>
                 </div>
                 
                 <div class="scroll-indicator gsap-fade-delay">
+                    <span class="scroll-line"></span>
                     <span>Explore</span>
-                    <i data-lucide="arrow-down" class="arrow-down"></i>
                 </div>
             </div>
             
             <div class="hero-right">
-                <!-- Auto Sliding Image Preview -->
                 <div class="hero-slider" id="hero-slider">
+                    <!-- Deepened contrast and desaturated slightly for editorial look -->
                     <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2070&auto=format&fit=crop');"></div>
                     <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1598653222000-6b7b7a552625?q=80&w=1000&auto=format&fit=crop');"></div>
-                    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1621618408365-d603a116b47a?q=80&w=2000&auto=format&fit=crop');"></div>
                     <div class="hero-image-overlay"></div>
+                </div>
+                <!-- Logo positioned elegantly as a floating badge -->
+                <div class="studio-badge gsap-fade-delay">
+                    <img src="https://placehold.co/150x150/111111/b85c38?text=MCM" alt="MCM Studio" class="badge-img">
                 </div>
             </div>
         </section>
 
-        <!-- INTERACTIVE BUTTON SECTION -->
+        <!-- INTERACTIVE BUTTON SECTION (Logic strictly preserved) -->
         <section class="interactive-section section-padding" id="interactive-hub">
             <div class="container interactive-container">
                 <div class="magic-hub">
@@ -119,47 +116,39 @@
                 </div>
                 
                 <div class="portfolio-grid">
-                    <div class="portfolio-item float-subtle gsap-fade-up track-trigger sfx-hover" data-src="YOUR_DIRECT_AUDIO_LINK_1" data-title="Kalam Pyasi" data-artist="MC Daitya" data-cover="https://img.youtube.com/vi/3kgBkBZhZMQ/maxresdefault.jpg">
+                    <!-- Cards refactored for a tighter, high-fashion aesthetic -->
+                    <article class="portfolio-item float-subtle gsap-fade-up track-trigger sfx-hover" data-src="YOUR_AUDIO_1" data-title="Kalam Pyasi" data-cover="https://img.youtube.com/vi/3kgBkBZhZMQ/maxresdefault.jpg">
                         <div class="pi-image-wrapper">
                             <img class="pi-media" src="https://img.youtube.com/vi/3kgBkBZhZMQ/maxresdefault.jpg" alt="Kalam Pyasi">
-                            <div class="pi-overlay"></div>
-                            <div class="play-icon-overlay">
-                                <i data-lucide="play-circle"></i>
-                            </div>
+                            <div class="play-indicator"><i data-lucide="play"></i></div>
                         </div>
                         <div class="pi-content">
-                            <h4>Kalam Pyasi</h4>
                             <span>MC Daitya</span>
+                            <h4>Kalam Pyasi</h4>
                         </div>
-                    </div>
+                    </article>
                     
-                    <div class="portfolio-item offset-item float-subtle gsap-fade-up track-trigger sfx-hover" data-src="YOUR_DIRECT_AUDIO_LINK_2" data-title="Mattha Kharab" data-artist="MC Daitya" data-cover="https://img.youtube.com/vi/FEgOKqd_7W8/maxresdefault.jpg">
+                    <article class="portfolio-item offset-item float-subtle gsap-fade-up track-trigger sfx-hover" data-src="YOUR_AUDIO_2" data-title="Mattha Kharab" data-cover="https://img.youtube.com/vi/FEgOKqd_7W8/maxresdefault.jpg">
                         <div class="pi-image-wrapper">
                             <img class="pi-media" src="https://img.youtube.com/vi/FEgOKqd_7W8/maxresdefault.jpg" alt="Mattha Kharab">
-                            <div class="pi-overlay"></div>
-                            <div class="play-icon-overlay">
-                                <i data-lucide="play-circle"></i>
-                            </div>
+                            <div class="play-indicator"><i data-lucide="play"></i></div>
                         </div>
                         <div class="pi-content">
-                            <h4>Mattha Kharab</h4>
                             <span>MC Daitya</span>
+                            <h4>Mattha Kharab</h4>
                         </div>
-                    </div>
+                    </article>
                     
-                    <div class="portfolio-item float-subtle gsap-fade-up track-trigger sfx-hover" data-src="YOUR_DIRECT_AUDIO_LINK_3" data-title="4 AM" data-artist="DBrave" data-cover="https://img.youtube.com/vi/Lh67UKKh8FU/maxresdefault.jpg">
+                    <article class="portfolio-item float-subtle gsap-fade-up track-trigger sfx-hover" data-src="YOUR_AUDIO_3" data-title="4 AM" data-cover="https://img.youtube.com/vi/Lh67UKKh8FU/maxresdefault.jpg">
                         <div class="pi-image-wrapper">
                             <img class="pi-media" src="https://img.youtube.com/vi/Lh67UKKh8FU/maxresdefault.jpg" alt="4 AM">
-                            <div class="pi-overlay"></div>
-                            <div class="play-icon-overlay">
-                                <i data-lucide="play-circle"></i>
-                            </div>
+                            <div class="play-indicator"><i data-lucide="play"></i></div>
                         </div>
                         <div class="pi-content">
-                            <h4>4 AM</h4>
                             <span>DBrave</span>
+                            <h4>4 AM</h4>
                         </div>
-                    </div>
+                    </article>
                 </div>
             </div>
         </section>
@@ -175,7 +164,7 @@
         <div class="fp-info">
             <span id="fp-title" class="track-name">Title</span>
             <div class="equalizer">
-                <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                <div class="bar"></div><div class="bar"></div><div class="bar"></div>
             </div>
         </div>
         <div class="fp-controls">
@@ -190,29 +179,25 @@
         </div>
     </div>
 
-    <!-- FOOTER WITH GOOGLE MAP -->
-    <footer class="site-footer">
+    <!-- FOOTER -->
+    <footer class="site-footer section-padding">
         <div class="container">
-            <div class="map-container ultra-glass gsap-fade-up sfx-hover" onclick="window.open('https://share.google/DgahJsLZvUjxJzMk4', '_blank')">
-                <div class="map-overlay">
-                    <i data-lucide="map-pin"></i>
-                    <h3>Locate Middle Class Musicians</h3>
-                    <p>Click to open Google Maps</p>
-                </div>
-                <div class="map-bg" style="background-image: url('https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80');"></div>
-            </div>
-
-            <div class="footer-content">
-                <div class="footer-left">
-                    <div class="logo">
-                        <i data-lucide="music-4"></i> MCM
+            <div class="footer-layout">
+                <div class="map-container ultra-glass gsap-fade-up sfx-hover" onclick="window.open('https://share.google/DgahJsLZvUjxJzMk4', '_blank')">
+                    <div class="map-overlay">
+                        <i data-lucide="map-pin"></i>
+                        <h3>Delhi Studio</h3>
                     </div>
-                    <p>&copy; 2026 Middle Class Musicians. Managed by Wenon Bont. Delhi.</p>
+                    <div class="map-bg" style="background-image: url('https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80');"></div>
                 </div>
-                <div class="footer-right">
-                    <a href="#" target="_blank" rel="noopener noreferrer" class="sfx-hover"><i data-lucide="instagram"></i></a>
-                    <a href="mailto:booking@middleclassmusicians.com" class="sfx-hover"><i data-lucide="mail"></i></a>
-                    <a href="https://wa.me/919315778147" target="_blank" rel="noopener noreferrer" class="sfx-hover"><i data-lucide="phone"></i></a>
+                
+                <div class="footer-meta">
+                    <div class="logo"><i data-lucide="disc-3"></i> MCM</div>
+                    <p class="footer-copy">&copy; 2026 Middle Class Musicians.<br>Managed by Wenon Bont.</p>
+                    <div class="social-links">
+                        <a href="#" class="sfx-hover"><i data-lucide="instagram"></i></a>
+                        <a href="mailto:booking@middleclassmusicians.com" class="sfx-hover"><i data-lucide="mail"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
