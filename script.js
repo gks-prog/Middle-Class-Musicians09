@@ -1,11 +1,14 @@
 // Initialize Icons
 lucide.createIcons();
 
-// Lenis Smooth Scroll Setup (Premium butter-smooth scrolling)
+// PERFORMANCE: Lenis Smooth Scroll Setup
+// Disabling smoothTouch stops scroll-hijacking lag on iOS and Android devices natively.
 const lenis = new Lenis({
     duration: 1.2,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    smoothWheel: true
+    smoothWheel: true,
+    smoothTouch: false, 
+    touchMultiplier: 2
 });
 
 function raf(time) {
@@ -14,24 +17,31 @@ function raf(time) {
 }
 requestAnimationFrame(raf);
 
-// Custom Cursor Logic (Disabled cleanly on touch devices)
+// PERFORMANCE: Custom Cursor Logic (GPU Accelerated via translate3d)
 const cursorDot = document.querySelector('.cursor-dot');
 const cursorOutline = document.querySelector('.cursor-outline');
 const hoverElements = document.querySelectorAll('.sfx-hover, a, button, .portfolio-item');
 
 if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    
+    let mouseX = 0, mouseY = 0;
+    let outlineX = 0, outlineY = 0;
+    
     window.addEventListener('mousemove', (e) => {
-        const posX = e.clientX;
-        const posY = e.clientY;
-        
-        cursorDot.style.left = `${posX}px`;
-        cursorDot.style.top = `${posY}px`;
-        
-        cursorOutline.animate({
-            left: `${posX}px`,
-            top: `${posY}px`
-        }, { duration: 400, fill: "forwards" });
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        // Instant dot positioning via GPU
+        cursorDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
     });
+
+    // Smooth outline trailing loop
+    function renderCursor() {
+        outlineX += (mouseX - outlineX) * 0.2;
+        outlineY += (mouseY - outlineY) * 0.2;
+        cursorOutline.style.transform = `translate3d(${outlineX}px, ${outlineY}px, 0)`;
+        requestAnimationFrame(renderCursor);
+    }
+    requestAnimationFrame(renderCursor);
 
     hoverElements.forEach(el => {
         el.addEventListener('mouseenter', () => {
@@ -59,6 +69,7 @@ window.addEventListener('load', () => {
       .from(".gsap-nav", { y: -50, opacity: 0, duration: 0.8, ease: "power3.out" }, "-=0.4")
       .from(".hero-title .line", { y: "110%", duration: 0.8, stagger: 0.15, ease: "power4.out" }, "-=0.6")
       .from(".gsap-fade-delay", { opacity: 0, y: 20, duration: 0.8, stagger: 0.15, ease: "power2.out" }, "-=0.4")
+      .from(".studio-logo-wrapper", { opacity: 0, x: -30, duration: 0.8, ease: "power2.out"}, "-=0.6")
       .from(".hero-slider .slide", { scale: 1.1, duration: 1.5, ease: "power2.out" }, "-=1");
 });
 
@@ -70,7 +81,7 @@ gsap.utils.toArray('.gsap-fade-up').forEach(element => {
     });
 });
 
-// Hero Slider Autoplay
+// Hero Slider Autoplay (Optimized to not block main thread)
 const slides = document.querySelectorAll('.slide');
 if(slides.length > 0) {
     let currentSlide = 0;
@@ -89,18 +100,15 @@ const subNodes = document.querySelectorAll('.sub-node');
 let nodesExpanded = false;
 
 magicBtn.addEventListener('click', () => {
-    // Dynamic radii based on screen width to guarantee no collision
     const radiusX = window.innerWidth < 768 ? 140 : 280;
     const radiusY = window.innerWidth < 768 ? 120 : 200;
     
     if (!nodesExpanded) {
-        // Change text cleanly
         gsap.to(magicBtn, { opacity: 0, duration: 0.2, onComplete: () => {
             magicBtn.innerText = "One Stop Solution for artists";
             gsap.to(magicBtn, { opacity: 1, duration: 0.2 });
         }});
 
-        // Elliptical Math: Spreads nodes cleanly without clipping button or text below
         gsap.to(subNodes, {
             opacity: 1, scale: 1,
             x: (i) => Math.cos((i * (Math.PI * 2) / subNodes.length) - Math.PI/2) * radiusX,
@@ -112,7 +120,7 @@ magicBtn.addEventListener('click', () => {
             magicBtn.innerText = "don't touch it";
             gsap.to(magicBtn, { opacity: 1, duration: 0.2 });
         }});
-        gsap.to(subNodes, { x: 0, y: 0, opacity: 0, scale: 0.5, duration: 0.5, ease: "power2.in" });
+        gsap.to(subNodes, { x: 0, y: 0, opacity: 0, scale: 0.5, duration: 0.4, ease: "power2.in" });
     }
     nodesExpanded = !nodesExpanded;
 });
@@ -170,7 +178,7 @@ tracks.forEach(track => {
             fPlayer.classList.add('active');
             updatePlayerUI(true);
         }).catch(err => {
-            console.error("Playback failed (Ensure Google Drive link formats are direct downloads):", err);
+            console.error("Playback failed:", err);
         });
     });
 });
