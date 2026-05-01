@@ -14,84 +14,95 @@ function raf(time) {
 }
 requestAnimationFrame(raf);
 
-// Custom Cursor Logic
+// Custom Cursor Logic (Only active if device supports hover)
 const cursorDot = document.querySelector('.cursor-dot');
 const cursorOutline = document.querySelector('.cursor-outline');
-const hoverElements = document.querySelectorAll('.sfx-hover, a, button');
+const hoverElements = document.querySelectorAll('.sfx-hover, a, button, .portfolio-item');
 
-window.addEventListener('mousemove', (e) => {
-    const posX = e.clientX;
-    const posY = e.clientY;
-    
-    cursorDot.style.left = `${posX}px`;
-    cursorDot.style.top = `${posY}px`;
-    
-    // Smooth trailing for outline
-    cursorOutline.animate({
-        left: `${posX}px`,
-        top: `${posY}px`
-    }, { duration: 500, fill: "forwards" });
-});
-
-hoverElements.forEach(el => {
-    el.addEventListener('mouseenter', () => {
-        cursorOutline.style.width = '60px';
-        cursorOutline.style.height = '60px';
-        cursorOutline.style.backgroundColor = 'rgba(212, 175, 55, 0.1)';
+if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    window.addEventListener('mousemove', (e) => {
+        const posX = e.clientX;
+        const posY = e.clientY;
+        
+        cursorDot.style.left = `${posX}px`;
+        cursorDot.style.top = `${posY}px`;
+        
+        cursorOutline.animate({
+            left: `${posX}px`,
+            top: `${posY}px`
+        }, { duration: 400, fill: "forwards" });
     });
-    el.addEventListener('mouseleave', () => {
-        cursorOutline.style.width = '40px';
-        cursorOutline.style.height = '40px';
-        cursorOutline.style.backgroundColor = 'transparent';
-    });
-});
 
-// Preloader & Hero Animation
+    hoverElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursorOutline.style.width = '60px';
+            cursorOutline.style.height = '60px';
+            cursorOutline.style.backgroundColor = 'rgba(212, 175, 55, 0.05)';
+            cursorOutline.style.borderColor = 'rgba(212, 175, 55, 0.5)';
+        });
+        el.addEventListener('mouseleave', () => {
+            cursorOutline.style.width = '36px';
+            cursorOutline.style.height = '36px';
+            cursorOutline.style.backgroundColor = 'transparent';
+            cursorOutline.style.borderColor = 'var(--text-secondary)';
+        });
+    });
+}
+
+// Preloader & Hero Animation Timeline
 window.addEventListener('load', () => {
     const tl = gsap.timeline();
     
-    tl.to(".preloader-bar", { width: "100%", duration: 1.5, ease: "power2.inOut" })
-      .to("#preloader", { yPercent: -100, duration: 0.8, ease: "power2.inOut" })
-      .from(".gsap-nav", { y: -50, opacity: 0, duration: 0.8 }, "-=0.4")
-      .from(".hero-title .line", { y: 100, opacity: 0, duration: 0.8, stagger: 0.2, ease: "power3.out" }, "-=0.6")
-      .from(".gsap-fade-delay", { opacity: 0, y: 20, duration: 0.8, stagger: 0.2 }, "-=0.4")
-      .from(".hero-right", { opacity: 0, scale: 0.95, duration: 1 }, "-=0.5");
+    tl.to(".preloader-title", { opacity: 1, duration: 0.8, ease: "power2.out" })
+      .to(".preloader-bar", { width: "100%", duration: 1.2, ease: "power2.inOut" }, "-=0.2")
+      .to("#preloader", { yPercent: -100, duration: 0.8, ease: "power2.inOut", delay: 0.2 })
+      .from(".gsap-nav", { y: -50, opacity: 0, duration: 0.8, ease: "power3.out" }, "-=0.4")
+      .from(".hero-title .line", { y: "110%", duration: 0.8, stagger: 0.15, ease: "power4.out" }, "-=0.6")
+      .from(".gsap-fade-delay", { opacity: 0, y: 20, duration: 0.8, stagger: 0.15, ease: "power2.out" }, "-=0.4")
+      .from(".hero-slider .slide", { scale: 1.1, duration: 1.5, ease: "power2.out" }, "-=1");
 });
 
 // Scroll Animations (GSAP)
 gsap.utils.toArray('.gsap-fade-up').forEach(element => {
     gsap.from(element, {
         scrollTrigger: { trigger: element, start: "top 85%" },
-        y: 50, opacity: 0, duration: 0.8, ease: "power2.out"
+        y: 40, opacity: 0, duration: 0.8, ease: "power3.out"
     });
 });
 
 // Hero Slider Autoplay
 const slides = document.querySelectorAll('.slide');
-let currentSlide = 0;
-setInterval(() => {
-    slides[currentSlide].classList.remove('active');
-    currentSlide = (currentSlide + 1) % slides.length;
-    slides[currentSlide].classList.add('active');
-}, 4000);
+if(slides.length > 0) {
+    let currentSlide = 0;
+    setInterval(() => {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }, 4500);
+}
 
-// Interactive Magic Hub Node Explosion
+// Interactive Magic Hub Node Logic
 const magicBtn = document.getElementById('magic-btn');
 const subNodes = document.querySelectorAll('.sub-node');
 let nodesExpanded = false;
 
 magicBtn.addEventListener('click', () => {
     if (!nodesExpanded) {
+        // Expand
+        magicBtn.innerText = "One Stop Solution for artists";
+        // Calculate dynamic radius based on screen size
+        const radius = window.innerWidth < 768 ? 120 : 180;
+        
         gsap.to(subNodes, {
             opacity: 1, scale: 1,
-            x: (i) => Math.cos(i * (Math.PI * 2) / subNodes.length) * 150,
-            y: (i) => Math.sin(i * (Math.PI * 2) / subNodes.length) * 150,
+            x: (i) => Math.cos(i * (Math.PI * 2) / subNodes.length) * radius,
+            y: (i) => Math.sin(i * (Math.PI * 2) / subNodes.length) * radius,
             duration: 0.8, stagger: 0.05, ease: "back.out(1.5)"
         });
-        magicBtn.innerText = "Collapse";
     } else {
+        // Collapse
+        magicBtn.innerText = "don't touch it";
         gsap.to(subNodes, { x: 0, y: 0, opacity: 0, scale: 0.5, duration: 0.5, ease: "power2.in" });
-        magicBtn.innerText = "Studio Capabilities";
     }
     nodesExpanded = !nodesExpanded;
 });
@@ -105,84 +116,78 @@ themeBtn.addEventListener('click', () => {
 });
 
 // ----------------------------------------------------
-// Global Audio Player & Canvas Waveform Logic
+// NATIVE AUDIO INTEGRATION (Floating Pill Player)
 // ----------------------------------------------------
 const tracks = document.querySelectorAll('.track-trigger');
-const globalPlayer = document.getElementById('global-player');
-const playerCover = document.getElementById('player-cover');
-const playerTitle = document.getElementById('player-title');
-const playerArtist = document.getElementById('player-artist');
-const playBtn = document.getElementById('player-play-btn');
-const closeBtn = document.getElementById('player-close-btn');
+const fPlayer = document.getElementById('floating-player');
+const audioEl = document.getElementById('native-audio');
 
-const canvas = document.getElementById('waveform-canvas');
-const ctx = canvas.getContext('2d');
+const fpCover = document.getElementById('fp-cover');
+const fpTitle = document.getElementById('fp-title');
+const fpPlayBtn = document.getElementById('fp-play-btn');
+const fpCloseBtn = document.getElementById('fp-close-btn');
+const playIcon = fpPlayBtn.querySelector('.icon-play');
+const pauseIcon = fpPlayBtn.querySelector('.icon-pause');
 
-let isPlaying = false;
-let animationId;
-let bars = Array.from({ length: 40 }, () => Math.random() * 30 + 5); 
-
-// Draw Canvas Waveform Simulation
-function drawWaveform() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    const barWidth = canvas.width / bars.length - 2;
-    
-    for (let i = 0; i < bars.length; i++) {
-        // Only animate height if playing
-        if(isPlaying) {
-            bars[i] = Math.max(5, Math.min(35, bars[i] + (Math.random() - 0.5) * 10));
-        } else {
-            bars[i] = Math.max(5, bars[i] - 1); // shrink when paused
-        }
-
-        const barHeight = bars[i];
-        const x = i * (barWidth + 2);
-        const y = (canvas.height - barHeight) / 2;
-        
-        ctx.fillStyle = '#d4af37'; // Gold Accent
-        ctx.beginPath();
-        ctx.roundRect(x, y, barWidth, barHeight, 2);
-        ctx.fill();
+// Helper to switch Play/Pause UI
+function updatePlayerUI(isPlaying) {
+    if (isPlaying) {
+        fPlayer.classList.remove('paused');
+        playIcon.style.display = 'none';
+        pauseIcon.style.display = 'block';
+    } else {
+        fPlayer.classList.add('paused');
+        playIcon.style.display = 'block';
+        pauseIcon.style.display = 'none';
     }
-    animationId = requestAnimationFrame(drawWaveform);
 }
-drawWaveform(); // Start loop
 
-// Track Click Logic
 tracks.forEach(track => {
-    track.addEventListener('click', () => {
-        // Populate UI
-        playerTitle.innerText = track.dataset.title;
-        playerArtist.innerText = track.dataset.artist;
-        playerCover.src = track.dataset.cover;
+    track.addEventListener('click', (e) => {
+        e.preventDefault(); // Prevent default if wrapped in anchor tags later
         
-        // Show Player & Set State to Playing
-        globalPlayer.classList.remove('hidden');
-        globalPlayer.classList.add('playing');
-        isPlaying = true;
+        const src = track.getAttribute('data-src');
+        const title = track.getAttribute('data-title');
+        const cover = track.getAttribute('data-cover');
         
-        // Toggle Icons
-        playBtn.querySelector('.icon-play').style.display = 'none';
-        playBtn.querySelector('.icon-pause').style.display = 'block';
+        // Update UI
+        fpTitle.innerText = title;
+        fpCover.src = cover;
+        
+        // Load and Play Audio
+        if (audioEl.src !== src) {
+            audioEl.src = src;
+        }
+        
+        audioEl.play().then(() => {
+            fPlayer.classList.add('active');
+            updatePlayerUI(true);
+        }).catch(err => {
+            console.error("Audio playback failed (Check Drive Link Format):", err);
+            alert("Unable to play track. Ensure link is formatted as a direct download link.");
+        });
     });
 });
 
-// Player Controls
-playBtn.addEventListener('click', () => {
-    isPlaying = !isPlaying;
-    if(isPlaying) {
-        globalPlayer.classList.add('playing');
-        playBtn.querySelector('.icon-play').style.display = 'none';
-        playBtn.querySelector('.icon-pause').style.display = 'block';
+// Toggle Play/Pause from Floating Player
+fpPlayBtn.addEventListener('click', () => {
+    if (audioEl.paused) {
+        audioEl.play();
+        updatePlayerUI(true);
     } else {
-        globalPlayer.classList.remove('playing');
-        playBtn.querySelector('.icon-play').style.display = 'block';
-        playBtn.querySelector('.icon-pause').style.display = 'none';
+        audioEl.pause();
+        updatePlayerUI(false);
     }
 });
 
-closeBtn.addEventListener('click', () => {
-    globalPlayer.classList.add('hidden');
-    globalPlayer.classList.remove('playing');
-    isPlaying = false;
+// Close Player
+fpCloseBtn.addEventListener('click', () => {
+    audioEl.pause();
+    updatePlayerUI(false);
+    fPlayer.classList.remove('active');
+});
+
+// Handle Audio End natively
+audioEl.addEventListener('ended', () => {
+    updatePlayerUI(false);
 });
