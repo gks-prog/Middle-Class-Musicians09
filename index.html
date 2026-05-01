@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Middle Class Musicians | Premium Studio</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Smooth Scroll & GSAP -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body data-theme="dark" class="preloading">
+
+    <!-- CINEMATIC PRELOADER -->
+    <div id="preloader">
+        <div class="preloader-content">
+            <h1 class="preloader-title">Middle Class Musicians</h1>
+            <div class="preloader-bar-container">
+                <div class="preloader-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- WebGL Background -->
+    <canvas id="shader-bg" class="shader-background"></canvas>
+    <div class="noise-overlay"></div>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle glass-panel sfx-hover" id="theme-btn" aria-label="Toggle Theme">
+        <i data-lucide="sun" class="sun-icon"></i>
+        <i data-lucide="moon" class="moon-icon"></i>
+    </button>
+
+    <nav class="navbar glass-panel gsap-nav">
+        <div class="logo sfx-hover">
+            <i data-lucide="music-4" style="margin-right: 8px;"></i>
+            MCM
+        </div>
+        <div class="nav-links">
+            <a href="#hero" class="sfx-hover">Studio</a>
+            <a href="#interactive-hub" class="sfx-hover">Solutions</a>
+            <a href="#portfolio" class="sfx-hover">Work</a>
+            <a href="https://wa.me/919315778147" class="btn-nav sfx-hover" target="_blank" rel="noopener noreferrer">Book Session</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero" id="hero">
+            <div class="hero-left">
+                <div class="hero-text-wrapper">
+                    <h1 class="hero-title">
+                        <div class="line-wrap"><span class="line">RECORD.</span></div>
+                        <div class="line-wrap"><span class="line">CREATE.</span></div>
+                        <div class="line-wrap"><span class="line text-glow">PERFORM.</span></div>
+                    </h1>
+                    <p class="hero-subtitle gsap-fade-delay">Delhi's premier cinematic recording space. Elevating independent sound to global standards.</p>
+                </div>
+                
+                <div class="scroll-indicator gsap-fade-delay">
+                    <span>Explore</span>
+                    <i data-lucide="arrow-down" class="arrow-down"></i>
+                </div>
+            </div>
+            
+            <div class="hero-right">
+                <!-- Auto Sliding Image Preview -->
+                <div class="hero-slider" id="hero-slider">
+                    <div class="slide active" style="background-image: url('https://lh3.googleusercontent.com/d/1AmyFUO3fCBcauHfsWG0-zWBlRrfy6o8E');"></div>
+                    <div class="slide" style="background-image: url('https://lh3.googleusercontent.com/d/1aSvW7Bep42TUfMXBb7kn6nU1Y7bbWJRP');"></div>
+                    <div class="slide" style="background-image: url('https://lh3.googleusercontent.com/d/16wildrlQxD9pmGyp-8PcYiMC_aQR4NE8');"></div>
+                    <div class="hero-image-overlay"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERACTIVE BUTTON SECTION -->
+        <section class="interactive-section section-padding" id="interactive-hub">
+            <div class="container interactive-container">
+                <div class="magic-hub">
+                    <button id="magic-btn" class="glass-btn massive-btn sfx-hover">Don't Touch It</button>
+                    
+                    <div class="sub-nodes">
+                        <div class="sub-node glass-panel"><i data-lucide="mic"></i> Recording</div>
+                        <div class="sub-node glass-panel"><i data-lucide="sliders"></i> Mixing & Mastering</div>
+                        <div class="sub-node glass-panel"><i data-lucide="drum"></i> Beat Production</div>
+                        <div class="sub-node glass-panel"><i data-lucide="briefcase"></i> Music Business</div>
+                        <div class="sub-node glass-panel"><i data-lucide="users"></i> Artist Management</div>
+                        <div class="sub-node glass-panel"><i data-lucide="video"></i> Video Production</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="portfolio section-padding" id="portfolio">
+            <div class="container">
+                <div class="section-header gsap-reveal">
+                    <h2>Selected Works</h2>
+                    <div class="line"></div>
+                </div>
+                
+                <div class="portfolio-grid">
+                    <a href="https://wa.me/919315778147" class="portfolio-item glass-panel gsap-fade-up sfx-hover">
+                        <div class="pi-image-wrapper">
+                            <video autoplay loop muted playsinline class="pi-media">
+                                <source src="https://drive.google.com/uc?export=download&id=1efzxt_UqwlR5mFue7OlJc_WfscXJAoSP" type="video/mp4">
+                            </video>
+                            <div class="pi-overlay"></div>
+                            <div class="play-icon-overlay"><i data-lucide="play-circle"></i></div>
+                        </div>
+                        <div class="pi-content">
+                            <h4>Vocal Tracking</h4>
+                            <span>Studio Documentation</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://instagram.com/middleclassmusicians" class="portfolio-item glass-panel gsap-fade-up sfx-hover" style="transform: translateY(40px);">
+                        <div class="pi-image-wrapper">
+                            <div class="pi-media" style="background-image: url('https://drive.google.com/uc?export=view&id=1aSvW7Bep42TUfMXBb7kn6nU1Y7bbWJRP');"></div>
+                            <div class="pi-overlay"></div>
+                            <div class="play-icon-overlay"><i data-lucide="image"></i></div>
+                        </div>
+                        <div class="pi-content">
+                            <h4>Boom Bap Archives</h4>
+                            <span>Beat Production</span>
+                        </div>
+                    </a>
+                    
+                    <a href="mailto:booking@middleclassmusicians.com" class="portfolio-item glass-panel gsap-fade-up sfx-hover">
+                        <div class="pi-image-wrapper">
+                            <video autoplay loop muted playsinline class="pi-media">
+                                <source src="https://drive.google.com/uc?export=download&id=16-D1OmJqvhIr67cZgtBP8UCrCTYMuHuO" type="video/mp4">
+                            </video>
+                            <div class="pi-overlay"></div>
+                            <div class="play-icon-overlay"><i data-lucide="play-circle"></i></div>
+                        </div>
+                        <div class="pi-content">
+                            <h4>Control Room Master</h4>
+                            <span>Mixing & Mastering</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FLOATING AUDIO PLAYER / EQUALIZER -->
+    <div class="floating-player glass-panel sfx-hover" id="eq-player">
+        <div class="eq-info">
+            <i data-lucide="disc" class="spin-disc"></i>
+            <span class="track-name">O Piyaa - Playing</span>
+        </div>
+        <div class="equalizer">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </div>
+
+    <!-- FOOTER WITH GOOGLE MAP -->
+    <footer>
+        <div class="container">
+            <div class="map-container glass-panel gsap-fade-up sfx-hover" onclick="window.open('https://share.google/DgahJsLZvUjxJzMk4', '_blank')">
+                <div class="map-overlay">
+                    <i data-lucide="map-pin"></i>
+                    <h3>Locate Middle Class Musicians</h3>
+                    <p>Click to open Google Maps</p>
+                </div>
+                <!-- Simulated map background -->
+                <div class="map-bg" style="background-image: url('https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80');"></div>
+            </div>
+
+            <div class="footer-content">
+                <div class="footer-left">
+                    <div class="logo">
+                        <i data-lucide="music-4"></i> MCM
+                    </div>
+                    <p>&copy; 2026 Middle Class Musicians. Managed by Wenon Bont. Delhi.</p>
+                </div>
+                <div class="footer-right">
+                    <a href="https://instagram.com/middleclassmusicians" target="_blank" rel="noopener noreferrer" class="sfx-hover"><i data-lucide="instagram"></i></a>
+                    <a href="mailto:booking@middleclassmusicians.com" class="sfx-hover"><i data-lucide="mail"></i></a>
+                    <a href="https://wa.me/919315778147" target="_blank" rel="noopener noreferrer" class="sfx-hover"><i data-lucide="phone"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
