@@ -35,7 +35,7 @@
     <div class="cursor-dot"></div>
     <div class="cursor-outline"></div>
 
-    <!-- Background Elements -->
+    <!-- Background Elements (Hardware Accelerated) -->
     <div class="noise-overlay"></div>
 
     <!-- Theme Toggle -->
@@ -60,6 +60,12 @@
     <main>
         <section class="hero" id="hero">
             <div class="hero-left">
+                <!-- Logo Moved to Left Side -->
+                <div class="studio-logo-wrapper ultra-glass gsap-fade-delay">
+                    <!-- Replace the src below with your Google Drive direct image link -->
+                    <img src="https://placehold.co/150x150/d4af37/ffffff?text=MCM+Logo" alt="MCM Studio Logo" class="studio-logo" id="main-logo">
+                </div>
+
                 <div class="hero-text-wrapper">
                     <h1 class="hero-title">
                         <div class="line-wrap"><span class="line">RECORD.</span></div>
@@ -76,11 +82,6 @@
             </div>
             
             <div class="hero-right">
-                <!-- Logo Placeholder -->
-                <div class="studio-logo-wrapper ultra-glass gsap-fade-delay">
-                    <img src="https://placehold.co/150x150/d4af37/ffffff?text=MCM+Logo" alt="MCM Studio Logo" class="studio-logo" id="main-logo">
-                </div>
-
                 <!-- Auto Sliding Image Preview -->
                 <div class="hero-slider" id="hero-slider">
                     <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2070&auto=format&fit=crop');"></div>
@@ -169,7 +170,7 @@
         <audio id="native-audio" preload="none"></audio>
         <div class="fp-cover-wrapper">
             <img id="fp-cover" src="" alt="Cover" class="spin-disc">
-            <div class="fp-cover-center"></div> <!-- Record hole detail -->
+            <div class="fp-cover-center"></div>
         </div>
         <div class="fp-info">
             <span id="fp-title" class="track-name">Title</span>
