@@ -9,7 +9,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <!-- Smooth Scroll & GSAP -->
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
@@ -24,14 +24,14 @@
     <!-- CINEMATIC PRELOADER -->
     <div id="preloader">
         <div class="preloader-content">
-            <h1 class="preloader-title">Middle Class Musicians</h1>
+            <h1 class="preloader-title">MIDDLE CLASS MUSICIANS</h1>
             <div class="preloader-bar-container">
                 <div class="preloader-bar"></div>
             </div>
         </div>
     </div>
 
-    <!-- Custom Cursor (Hidden on Touch Devices via CSS) -->
+    <!-- Custom Cursor -->
     <div class="cursor-dot"></div>
     <div class="cursor-outline"></div>
 
@@ -39,15 +39,15 @@
     <div class="noise-overlay"></div>
 
     <!-- Theme Toggle -->
-    <button class="theme-toggle glass-panel sfx-hover" id="theme-btn" aria-label="Toggle Theme">
+    <button class="theme-toggle ultra-glass sfx-hover" id="theme-btn" aria-label="Toggle Theme">
         <i data-lucide="sun" class="sun-icon"></i>
         <i data-lucide="moon" class="moon-icon"></i>
     </button>
 
-    <nav class="navbar glass-panel gsap-nav">
+    <nav class="navbar ultra-glass gsap-nav">
         <div class="logo sfx-hover">
             <i data-lucide="music-4" style="margin-right: 8px;"></i>
-            Middle Class Musicians
+            MCM
         </div>
         <div class="nav-links">
             <a href="#hero" class="sfx-hover">Studio</a>
@@ -64,7 +64,7 @@
                     <h1 class="hero-title">
                         <div class="line-wrap"><span class="line">RECORD.</span></div>
                         <div class="line-wrap"><span class="line">CREATE.</span></div>
-                        <div class="line-wrap"><span class="line text-vibrant" style="color: #d4af37;">PERFORM.</span></div>
+                        <div class="line-wrap"><span class="line text-vibrant" style="color: var(--accent);">PERFORM.</span></div>
                     </h1>
                     <p class="hero-subtitle gsap-fade-delay">Delhi's premier cinematic recording space. Elevating independent sound to global standards.</p>
                 </div>
@@ -77,9 +77,8 @@
             
             <div class="hero-right">
                 <!-- Logo Placeholder -->
-                <div class="studio-logo-wrapper gsap-fade-delay">
-                    <!-- Replace the src below with your Google Drive direct image link -->
-                    <img src="https://lh3.googleusercontent.com/d/1CoJ-THrbzAfmpJQbZnoV3LuJKHopkSVp" alt="MCM Studio Logo" class="studio-logo" id="main-logo">
+                <div class="studio-logo-wrapper ultra-glass gsap-fade-delay">
+                    <img src="https://placehold.co/150x150/d4af37/ffffff?text=MCM+Logo" alt="MCM Studio Logo" class="studio-logo" id="main-logo">
                 </div>
 
                 <!-- Auto Sliding Image Preview -->
@@ -99,12 +98,12 @@
                     <button id="magic-btn" class="glass-btn massive-btn sfx-hover">don't touch it</button>
                     
                     <div class="sub-nodes">
-                        <div class="sub-node glass-panel"><i data-lucide="mic"></i> Recording</div>
-                        <div class="sub-node glass-panel"><i data-lucide="sliders"></i> Mix & Master</div>
-                        <div class="sub-node glass-panel"><i data-lucide="drum"></i> Production</div>
-                        <div class="sub-node glass-panel"><i data-lucide="briefcase"></i> Business</div>
-                        <div class="sub-node glass-panel"><i data-lucide="users"></i> Management</div>
-                        <div class="sub-node glass-panel"><i data-lucide="video"></i> Video</div>
+                        <div class="sub-node ultra-glass"><i data-lucide="mic"></i> Recording</div>
+                        <div class="sub-node ultra-glass"><i data-lucide="sliders"></i> Mix & Master</div>
+                        <div class="sub-node ultra-glass"><i data-lucide="drum"></i> Production</div>
+                        <div class="sub-node ultra-glass"><i data-lucide="briefcase"></i> Business</div>
+                        <div class="sub-node ultra-glass"><i data-lucide="users"></i> Management</div>
+                        <div class="sub-node ultra-glass"><i data-lucide="video"></i> Video</div>
                     </div>
                 </div>
             </div>
@@ -119,8 +118,7 @@
                 </div>
                 
                 <div class="portfolio-grid">
-                    <!-- Note: For Google Drive audio links, use the format: https://docs.google.com/uc?export=download&id=YOUR_FILE_ID -->
-                    <div class="portfolio-item float-subtle gsap-fade-up track-trigger sfx-hover" data-src="https://drive.google.com/uc?export=download&id=1FoT_v5wCXkfUGvFaCkXKzCOekNZz6YBW" data-title="Kalam Pyasi" data-artist="MC Daitya" data-cover="https://img.youtube.com/vi/3kgBkBZhZMQ/maxresdefault.jpg">
+                    <div class="portfolio-item float-subtle gsap-fade-up track-trigger sfx-hover" data-src="YOUR_DIRECT_AUDIO_LINK_1" data-title="Kalam Pyasi" data-artist="MC Daitya" data-cover="https://img.youtube.com/vi/3kgBkBZhZMQ/maxresdefault.jpg">
                         <div class="pi-image-wrapper">
                             <img class="pi-media" src="https://img.youtube.com/vi/3kgBkBZhZMQ/maxresdefault.jpg" alt="Kalam Pyasi">
                             <div class="pi-overlay"></div>
@@ -166,29 +164,35 @@
         </section>
     </main>
 
-    <!-- FLOATING AUDIO PLAYER -->
-    <div id="floating-player" class="floating-player glass-panel hidden">
+    <!-- FROSTED GLASS MINI PLAYER -->
+    <div id="floating-player" class="floating-player ultra-glass hidden">
         <audio id="native-audio" preload="none"></audio>
-        <img id="fp-cover" src="" alt="Cover" class="spin-disc">
+        <div class="fp-cover-wrapper">
+            <img id="fp-cover" src="" alt="Cover" class="spin-disc">
+            <div class="fp-cover-center"></div> <!-- Record hole detail -->
+        </div>
         <div class="fp-info">
             <span id="fp-title" class="track-name">Title</span>
             <div class="equalizer">
                 <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
             </div>
         </div>
-        <button id="fp-play-btn" class="fp-control sfx-hover">
-            <i data-lucide="pause" class="icon-pause"></i>
-            <i data-lucide="play" class="icon-play" style="display: none;"></i>
-        </button>
-        <button id="fp-close-btn" class="fp-control sfx-hover">
-            <i data-lucide="x"></i>
-        </button>
+        <div class="fp-controls">
+            <button id="fp-play-btn" class="fp-control sfx-hover">
+                <i data-lucide="pause" class="icon-pause"></i>
+                <i data-lucide="play" class="icon-play" style="display: none;"></i>
+            </button>
+            <div class="fp-divider"></div>
+            <button id="fp-close-btn" class="fp-control sfx-hover">
+                <i data-lucide="x"></i>
+            </button>
+        </div>
     </div>
 
     <!-- FOOTER WITH GOOGLE MAP -->
     <footer class="site-footer">
         <div class="container">
-            <div class="map-container glass-panel gsap-fade-up sfx-hover" onclick="window.open('https://share.google/DgahJsLZvUjxJzMk4', '_blank')">
+            <div class="map-container ultra-glass gsap-fade-up sfx-hover" onclick="window.open('https://share.google/DgahJsLZvUjxJzMk4', '_blank')">
                 <div class="map-overlay">
                     <i data-lucide="map-pin"></i>
                     <h3>Locate Middle Class Musicians</h3>
