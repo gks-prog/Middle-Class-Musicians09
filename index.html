@@ -35,8 +35,8 @@
     <div class="cursor-dot"></div>
     <div class="cursor-outline"></div>
 
-    <!-- WebGL/Gradient Background -->
-    <canvas id="shader-bg" class="shader-background"></canvas>
+    <!-- Background Elements -->
+    <div class="background-gradient"></div>
     <div class="noise-overlay"></div>
 
     <!-- Theme Toggle -->
@@ -65,7 +65,7 @@
                     <h1 class="hero-title">
                         <div class="line-wrap"><span class="line">RECORD.</span></div>
                         <div class="line-wrap"><span class="line">CREATE.</span></div>
-                        <div class="line-wrap"><span class="line text-glow">PERFORM.</span></div>
+                        <div class="line-wrap"><span class="line text-vibrant">PERFORM.</span></div>
                     </h1>
                     <p class="hero-subtitle gsap-fade-delay">Delhi's premier cinematic recording space. Elevating independent sound to global standards.</p>
                 </div>
@@ -105,70 +105,71 @@
             </div>
         </section>
 
-        <!-- PORTFOLIO SECTION (Integrated from HTML 1) -->
+        <!-- PORTFOLIO SECTION -->
         <section id="portfolio" class="portfolio section-padding">
-            <div class="section-header">
-                <h2 class="gsap-fade-up">Selected Works</h2>
-                <p class="gsap-fade-up">Sonic perfection tailored for the bold.</p>
-            </div>
-            
-            <div class="portfolio-grid">
-                <!-- Track 1 -->
-                <div class="portfolio-item float-subtle gsap-fade-up track-trigger sfx-hover" data-src="DRIVE_LINK_1_HERE" data-title="Kalam Pyasi" data-artist="MC Daitya" data-cover="https://img.youtube.com/vi/3kgBkBZhZMQ/maxresdefault.jpg">
-                    <div class="item-image-wrapper">
-                        <img src="https://img.youtube.com/vi/3kgBkBZhZMQ/maxresdefault.jpg" alt="Kalam Pyasi">
-                        <div class="item-overlay"></div>
-                        <button class="play-overlay-btn">
-                            <i data-lucide="play" class="icon-play"></i>
-                        </button>
-                    </div>
-                    <div class="item-meta">
-                        <div>
-                            <h3>Kalam Pyasi</h3>
-                            <span>MC Daitya</span>
-                        </div>
-                    </div>
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="gsap-fade-up">Selected Works</h2>
+                    <p class="gsap-fade-up">Sonic perfection tailored for the bold.</p>
                 </div>
                 
-                <!-- Track 2 -->
-                <div class="portfolio-item offset-item float-subtle gsap-fade-up track-trigger sfx-hover" data-src="DRIVE_LINK_2_HERE" data-title="Mattha Kharab" data-artist="MC Daitya" data-cover="https://img.youtube.com/vi/FEgOKqd_7W8/maxresdefault.jpg">
-                    <div class="item-image-wrapper">
-                        <img src="https://img.youtube.com/vi/FEgOKqd_7W8/maxresdefault.jpg" alt="Mattha Kharab">
-                        <div class="item-overlay"></div>
-                        <button class="play-overlay-btn">
-                            <i data-lucide="play" class="icon-play"></i>
-                        </button>
-                    </div>
-                    <div class="item-meta">
-                        <div>
-                            <h3>Mattha Kharab</h3>
-                            <span>MC Daitya</span>
+                <div class="portfolio-grid">
+                    <!-- Track 1 -->
+                    <div class="portfolio-item float-subtle gsap-fade-up track-trigger sfx-hover" data-src="DRIVE_LINK_1_HERE" data-title="Kalam Pyasi" data-artist="MC Daitya" data-cover="https://img.youtube.com/vi/3kgBkBZhZMQ/maxresdefault.jpg">
+                        <div class="item-image-wrapper">
+                            <img src="https://img.youtube.com/vi/3kgBkBZhZMQ/maxresdefault.jpg" alt="Kalam Pyasi">
+                            <div class="item-overlay"></div>
+                            <button class="play-overlay-btn">
+                                <i data-lucide="play" class="icon-play"></i>
+                            </button>
+                        </div>
+                        <div class="item-meta">
+                            <div>
+                                <h3>Kalam Pyasi</h3>
+                                <span>MC Daitya</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <!-- Track 3 -->
-                <div class="portfolio-item float-subtle gsap-fade-up track-trigger sfx-hover" data-src="DRIVE_LINK_3_HERE" data-title="4 AM" data-artist="DBrave" data-cover="https://img.youtube.com/vi/Lh67UKKh8FU/maxresdefault.jpg">
-                    <div class="item-image-wrapper">
-                        <img src="https://img.youtube.com/vi/Lh67UKKh8FU/maxresdefault.jpg" alt="4 AM">
-                        <div class="item-overlay"></div>
-                        <button class="play-overlay-btn">
-                            <i data-lucide="play" class="icon-play"></i>
-                        </button>
+                    
+                    <!-- Track 2 -->
+                    <div class="portfolio-item offset-item float-subtle gsap-fade-up track-trigger sfx-hover" data-src="DRIVE_LINK_2_HERE" data-title="Mattha Kharab" data-artist="MC Daitya" data-cover="https://img.youtube.com/vi/FEgOKqd_7W8/maxresdefault.jpg">
+                        <div class="item-image-wrapper">
+                            <img src="https://img.youtube.com/vi/FEgOKqd_7W8/maxresdefault.jpg" alt="Mattha Kharab">
+                            <div class="item-overlay"></div>
+                            <button class="play-overlay-btn">
+                                <i data-lucide="play" class="icon-play"></i>
+                            </button>
+                        </div>
+                        <div class="item-meta">
+                            <div>
+                                <h3>Mattha Kharab</h3>
+                                <span>MC Daitya</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="item-meta">
-                        <div>
-                            <h3>4 AM</h3>
-                            <span>DBrave</span>
+                    
+                    <!-- Track 3 -->
+                    <div class="portfolio-item float-subtle gsap-fade-up track-trigger sfx-hover" data-src="DRIVE_LINK_3_HERE" data-title="4 AM" data-artist="DBrave" data-cover="https://img.youtube.com/vi/Lh67UKKh8FU/maxresdefault.jpg">
+                        <div class="item-image-wrapper">
+                            <img src="https://img.youtube.com/vi/Lh67UKKh8FU/maxresdefault.jpg" alt="4 AM">
+                            <div class="item-overlay"></div>
+                            <button class="play-overlay-btn">
+                                <i data-lucide="play" class="icon-play"></i>
+                            </button>
+                        </div>
+                        <div class="item-meta">
+                            <div>
+                                <h3>4 AM</h3>
+                                <span>DBrave</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
     </main>
 
-    <!-- GLOBAL AUDIO PLAYER (Integrated from HTML 1) -->
+    <!-- GLOBAL AUDIO PLAYER -->
     <div id="global-player" class="global-player glass-panel hidden">
         <div class="player-inner">
             <div class="player-left">
@@ -180,7 +181,6 @@
             </div>
             
             <div class="player-center">
-                <!-- Dynamic Waveform Canvas -->
                 <canvas id="waveform-canvas" width="400" height="40"></canvas>
             </div>
             
@@ -197,7 +197,7 @@
     </div>
 
     <!-- FOOTER WITH GOOGLE MAP -->
-    <footer>
+    <footer class="site-footer">
         <div class="container">
             <div class="map-container glass-panel gsap-fade-up sfx-hover" onclick="window.open('https://share.google/DgahJsLZvUjxJzMk4', '_blank')">
                 <div class="map-overlay">
